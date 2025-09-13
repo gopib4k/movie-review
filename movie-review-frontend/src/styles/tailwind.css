@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Theme Colors */
+    --color-background: #141414; /* rich-charcoal */
+    --color-foreground: #FFFFFF; /* white */
+    --color-border: rgba(255, 255, 255, 0.1); /* white-10 */
+    --color-input: #1F1F1F; /* elevated-dark-gray */
+    --color-ring: #E50914; /* netflix-red */
+    
+    /* Card Colors */
+    --color-card: #1F1F1F; /* elevated-dark-gray */
+    --color-card-foreground: #FFFFFF; /* white */
+    
+    /* Popover Colors */
+    --color-popover: #1F1F1F; /* elevated-dark-gray */
+    --color-popover-foreground: #FFFFFF; /* white */
+    
+    /* Muted Colors */
+    --color-muted: #2A2A2A; /* darker-gray */
+    --color-muted-foreground: #B3B3B3; /* medium-gray */
+    
+    /* Brand Colors */
+    --color-primary: #E50914; /* netflix-red */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    --color-secondary: #F5C518; /* imdb-gold */
+    --color-secondary-foreground: #000000; /* black */
+    
+    --color-accent: #00D4AA; /* modern-teal */
+    --color-accent-foreground: #000000; /* black */
+    
+    /* State Colors */
+    --color-success: #00D4AA; /* modern-teal */
+    --color-success-foreground: #000000; /* black */
+    
+    --color-warning: #FF9500; /* vibrant-orange */
+    --color-warning-foreground: #FFFFFF; /* white */
+    
+    --color-error: #FF453A; /* ios-red */
+    --color-error-foreground: #FFFFFF; /* white */
+    
+    --color-destructive: #FF453A; /* ios-red */
+    --color-destructive-foreground: #FFFFFF; /* white */
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  body, p, span, div {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  .font-caption {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Elevation System */
+  .elevation-0 {
+    box-shadow: none;
+  }
+
+  .elevation-1 {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .elevation-2 {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .elevation-3 {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  }
+
+  .elevation-4 {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Floating Action Cards */
+  .floating-card {
+    @apply transition-all duration-300 ease-out;
+    transform: translateY(0);
+  }
+
+  .floating-card:hover {
+    @apply elevation-2;
+    transform: translateY(-2px);
+  }
+
+  /* Shimmer Loading Effect */
+  .shimmer {
+    background: linear-gradient(90deg, 
+      rgba(255, 255, 255, 0.1) 25%, 
+      rgba(255, 255, 255, 0.2) 50%, 
+      rgba(255, 255, 255, 0.1) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Star Rating Animation */
+  .star-fill {
+    animation: starFill 150ms ease-out forwards;
+  }
+
+  @keyframes starFill {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Parallax Container */
+  .parallax-container {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
